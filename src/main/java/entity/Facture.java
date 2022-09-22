@@ -13,8 +13,7 @@ public class Facture implements Serializable {
     private String nom_facture;
     @Column
     private Date date_facture;
-    @OneToOne
-    @JoinColumn(name = "id_commande")
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "facture")
     private Commande commande;
 
     public Facture() {

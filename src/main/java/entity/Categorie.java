@@ -10,7 +10,7 @@ public class Categorie  implements Serializable {
     private int id_categorie;
     @Column
     private String nom_categorie;
-    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "categorie",fetch = FetchType.LAZY)
     private List<Produit> produit;
 
     public Categorie() {

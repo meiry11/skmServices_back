@@ -1,14 +1,12 @@
 package entity;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
 public class IdLignecommande implements Serializable {
-    @ManyToOne
-    @JoinColumn(name = "id_commande")
-    private Commande commande;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int commande;
     @ManyToOne
     @JoinColumn(name = "id_ligneCommande")
     private Lignecommande ligneCommande;
@@ -16,16 +14,16 @@ public class IdLignecommande implements Serializable {
     public IdLignecommande() {
     }
 
-    public IdLignecommande(Commande commande, Lignecommande ligneCommande) {
+    public IdLignecommande(int commande, Lignecommande ligneCommande) {
         this.commande = commande;
         this.ligneCommande = ligneCommande;
     }
 
-    public Commande getId_commande() {
+    public int getId_commande() {
         return commande;
     }
 
-    public void setId_commande(Commande id_commande) {
+    public void setId_commande(int id_commande) {
         this.commande = id_commande;
     }
 

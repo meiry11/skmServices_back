@@ -17,7 +17,7 @@ public class Adresse  implements Serializable {
     private String code_postale;
     @Column
     private String nom_ville;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_nom")
     private Client client;
 

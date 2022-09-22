@@ -1,22 +1,20 @@
 package entity;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
 public class IdLivraison implements Serializable {
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_commande")
     private Commande commande;
-    @ManyToOne
-    @JoinColumn(name = "id_livraison")
-    private Livraison livraison;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int livraison;
 
     public IdLivraison() {
     }
 
-    public IdLivraison(Commande id_commande, Livraison id_livraison) {
+    public IdLivraison(Commande id_commande, int id_livraison) {
         this.commande = id_commande;
         this.livraison = id_livraison;
     }
@@ -29,11 +27,11 @@ public class IdLivraison implements Serializable {
         this.commande = id_commande;
     }
 
-    public Livraison getId_livraison() {
+    public int getId_livraison() {
         return livraison;
     }
 
-    public void setId_livraison(Livraison id_livraison) {
+    public void setId_livraison(int id_livraison) {
         this.livraison = id_livraison;
     }
 }

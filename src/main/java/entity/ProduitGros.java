@@ -10,7 +10,7 @@ public class ProduitGros implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_produitGros;
-    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "produitgros",fetch = FetchType.LAZY)
     private List<Produit> produit;
 
     @Column

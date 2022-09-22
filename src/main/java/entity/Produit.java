@@ -24,7 +24,7 @@ public class Produit implements Serializable {
     private Date date_creation_produit;
     @Column
     private Date date_peremption;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_commande")
     private Commande commande;
     @OneToOne
@@ -37,6 +37,10 @@ public class Produit implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_produitgros")
     private ProduitGros produitGros;
+
+    @ManyToOne
+    @JoinColumn(name = "id_catalogueproduit")
+    private Catalogueproduit catalogueproduit;
 
     public Produit() {
     }
@@ -55,6 +59,14 @@ public class Produit implements Serializable {
         this.ligneCommande = ligneCommande;
         this.categorie=categorie;
         this.produitGros=produitGros;
+    }
+
+    public Catalogueproduit getCatalogueproduit() {
+        return catalogueproduit;
+    }
+
+    public void setCatalogueproduit(Catalogueproduit catalogueproduit) {
+        this.catalogueproduit = catalogueproduit;
     }
 
     public ProduitGros getProduitGros() {

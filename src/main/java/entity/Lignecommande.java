@@ -13,8 +13,8 @@ public class Lignecommande implements Serializable {
     private int lc_tva;
     @Column
     private int lc_qte;
-    @OneToOne
-    @JoinColumn(name = "id_emballage")
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "Lignecommande")
     private Emballage emballage;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "Lignecommande")

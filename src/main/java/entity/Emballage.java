@@ -14,12 +14,16 @@ public class Emballage implements Serializable {
     private String model_emballage;
     @Column
     private String format_emballage;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="id_commande")
     private Commande commande;
     @OneToOne
     @JoinColumn(name = "id_ligneCommande")
     private Lignecommande ligneCommande;
+
+    @ManyToOne
+    @JoinColumn(name = "id_catalogueemballage")
+    private Catalogueemballage catalogueemballage;
 
     public Emballage() {
     }
@@ -31,6 +35,14 @@ public class Emballage implements Serializable {
         this.format_emballage = format_emballage;
         this.commande = commande;
         this.ligneCommande = ligneCommande;
+    }
+
+    public Catalogueemballage getCatalogueemballage() {
+        return catalogueemballage;
+    }
+
+    public void setCatalogueemballage(Catalogueemballage catalogueemballage) {
+        this.catalogueemballage = catalogueemballage;
     }
 
     public int getId_emballage() {

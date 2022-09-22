@@ -26,10 +26,13 @@ public class Client implements Serializable {
     private Integer numeroSiret;
     @Column(name="mot_de_passe")
     private String motDePasse;
-    @OneToMany(mappedBy = "adresse", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Adresse> adresse;
-    @OneToMany(mappedBy = "commande", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Commande> commande;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy="client",fetch = FetchType.LAZY)
+    private Role role;
 
     public Client() {
     }
