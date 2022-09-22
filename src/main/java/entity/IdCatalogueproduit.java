@@ -1,7 +1,16 @@
 package entity;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
-public class IdCatalogueproduit {
+@Embeddable
+public class IdCatalogueproduit implements Serializable {
+    @ManyToOne
+    @JoinColumn(name = "id_produit")
     private Produit produit;
+    @ManyToOne
+    @JoinColumn(name = "id_nom")
     private Client client;
 
     public IdCatalogueproduit() {

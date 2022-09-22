@@ -1,24 +1,47 @@
 package entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
-
-public class Produit {
+@Entity
+@Table(name = "produit")
+public class Produit implements Serializable {
+    @Id
     private int id_produit;
+    @Column
     private String nom_produit;
+    @Column
     private int prixHT_produit;
+    @Column
     private int stock_produit;
+    @Column
     private int reference_produit;
+    @Column
     private String description_produit;
+    @Column
     private String image_produit;
+    @Column
     private Date date_creation_produit;
+    @Column
     private Date date_peremption;
+    @OneToOne
+    @JoinColumn(name = "id_commande")
     private Commande commande;
+    @OneToOne
+    @JoinColumn(name = "id_lignecommande")
     private Lignecommande ligneCommande;
+    @ManyToOne
+    @JoinColumn(name = "id_categorie")
+    private  Categorie categorie;
+
+    @ManyToOne
+    @JoinColumn(name = "id_produitgros")
+    private ProduitGros produitGros;
 
     public Produit() {
     }
 
-    public Produit(int id_produit, String nom_produit, int prixHT_produit, int stock_produit, int reference_produit, String description_produit, String image_produit, Date date_creation_produit, Date date_peremption, Commande commande, Lignecommande ligneCommande) {
+    public Produit(ProduitGros produitGros,Categorie categorie,int id_produit, String nom_produit, int prixHT_produit, int stock_produit, int reference_produit, String description_produit, String image_produit, Date date_creation_produit, Date date_peremption, Commande commande, Lignecommande ligneCommande) {
         this.id_produit = id_produit;
         this.nom_produit = nom_produit;
         this.prixHT_produit = prixHT_produit;
@@ -30,6 +53,24 @@ public class Produit {
         this.date_peremption = date_peremption;
         this.commande = commande;
         this.ligneCommande = ligneCommande;
+        this.categorie=categorie;
+        this.produitGros=produitGros;
+    }
+
+    public ProduitGros getProduitGros() {
+        return produitGros;
+    }
+
+    public void setProduitGros(ProduitGros produitGros) {
+        this.produitGros = produitGros;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     public int getId_produit() {

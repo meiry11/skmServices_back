@@ -1,23 +1,40 @@
 package entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
-public class Client {
+@Entity
+@Table(name = "client")
+public class Client implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String nom;
+    @Column
     private String prenom;
+    @Column
     private String email;
+    @Column
     private Integer telephone;
+    @Column(name="date_creation")
     private Date dateCreation;
+    @Column(name="numero_siret")
     private Integer numeroSiret;
+    @Column(name="mot_de_passe")
     private String motDePasse;
-    private Adresse adresse;
-    private Commande commande;
+    @OneToMany(mappedBy = "adresse", fetch = FetchType.LAZY)
+    private List<Adresse> adresse;
+    @OneToMany(mappedBy = "commande", fetch = FetchType.LAZY)
+    private List<Commande> commande;
 
     public Client() {
     }
 
-    public Client(Integer id, String nom, String prenom, String email, Integer telephone, Date dateCreation, Integer numeroSiret, String motDePasse, Adresse adresse, Commande commande) {
+    public Client(Integer id, String nom, String prenom, String email, Integer telephone, Date dateCreation, Integer numeroSiret, String motDePasse, List<Adresse> adresse, List<Commande> commande) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -94,19 +111,19 @@ public class Client {
         this.motDePasse = motDePasse;
     }
 
-    public Adresse getAdresse() {
+    public List<Adresse> getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(Adresse adresse) {
+    public void setAdresse(List<Adresse> adresse) {
         this.adresse = adresse;
     }
 
-    public Commande getCommande() {
+    public List<Commande> getCommande() {
         return commande;
     }
 
-    public void setCommande(Commande commande) {
+    public void setCommande(List<Commande> commande) {
         this.commande = commande;
     }
 

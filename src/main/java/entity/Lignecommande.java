@@ -1,10 +1,25 @@
 package entity;
 
-public class Lignecommande {
+import javax.persistence.*;
+import java.io.Serializable;
+@Entity
+@Table(name = "lignecommande")
+public class Lignecommande implements Serializable {
+    @EmbeddedId
     private IdLignecommande id_lignecommande;
+    @Column
     private int lc_prixHT;
+    @Column
     private int lc_tva;
+    @Column
     private int lc_qte;
+    @OneToOne
+    @JoinColumn(name = "id_emballage")
+    private Emballage emballage;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "Lignecommande")
+    private Produit produit;
+
 
     public Lignecommande() {
     }

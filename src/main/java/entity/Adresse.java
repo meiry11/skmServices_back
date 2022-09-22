@@ -1,11 +1,24 @@
 package entity;
 
-public class Adresse {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "adresse")
+public class Adresse  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_adresse;
+    @Column
     private String nom_rue;
+    @Column
     private int numero;
+    @Column
     private String code_postale;
+    @Column
     private String nom_ville;
+    @ManyToOne
+    @JoinColumn(name = "id_nom")
     private Client client;
 
     public Adresse() {

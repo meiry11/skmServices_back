@@ -1,11 +1,20 @@
 package entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
-
-public class Facture {
+@Entity
+@Table(name = "facture")
+public class Facture implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_facture;
+    @Column
     private String nom_facture;
+    @Column
     private Date date_facture;
+    @OneToOne
+    @JoinColumn(name = "id_commande")
     private Commande commande;
 
     public Facture() {

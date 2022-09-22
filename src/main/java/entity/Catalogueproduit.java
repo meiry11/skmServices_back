@@ -1,7 +1,13 @@
 package entity;
 
-public class Catalogueproduit {
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import java.io.Serializable;
+
+public class Catalogueproduit  implements Serializable {
+    @EmbeddedId
     private IdCatalogueproduit id_catlogueproduit;
+    @Column
     private int nombre_total;
 
     public Catalogueproduit() {

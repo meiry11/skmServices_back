@@ -1,11 +1,24 @@
 package entity;
 
-public class Emballage {
+import javax.persistence.*;
+import java.io.Serializable;
+@Entity
+@Table(name = "emballage")
+public class Emballage implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_emballage;
+    @Column
     private String nom_emballage;
+    @Column
     private String model_emballage;
+    @Column
     private String format_emballage;
+    @OneToOne
+    @JoinColumn(name="id_commande")
     private Commande commande;
+    @OneToOne
+    @JoinColumn(name = "id_ligneCommande")
     private Lignecommande ligneCommande;
 
     public Emballage() {

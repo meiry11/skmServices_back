@@ -1,15 +1,28 @@
 package entity;
 
-public class ProduitGros {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+@Table(name = "produitgros")
+public class ProduitGros implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_produitGros;
-    private Produit produit;
+    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
+    private List<Produit> produit;
+
+    @Column
+    private int quantite;
 
     public ProduitGros() {
     }
 
-    public ProduitGros(int id_produitGros, Produit produit) {
+    public ProduitGros(int quantite,int id_produitGros, List<Produit> produit) {
         this.id_produitGros = id_produitGros;
         this.produit = produit;
+        this.quantite = quantite;
     }
 
     public int getId_produitGros() {
@@ -20,11 +33,19 @@ public class ProduitGros {
         this.id_produitGros = id_produitGros;
     }
 
-    public Produit getProduit() {
+    public List<Produit> getProduit() {
         return produit;
     }
 
-    public void setProduit(Produit produit) {
+    public void setProduit(List<Produit> produit) {
         this.produit = produit;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 }

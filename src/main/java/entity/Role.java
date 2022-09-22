@@ -1,8 +1,17 @@
 package entity;
 
-public class Role {
+import javax.persistence.*;
+import java.io.Serializable;
+@Entity
+@Table(name = "role")
+public class Role implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_role;
+    @Column
     private String nom_role;
+    @ManyToOne
+    @JoinColumn(name = "id_nom")
     private Client client;
 
     public Role() {

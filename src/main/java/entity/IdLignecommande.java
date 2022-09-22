@@ -1,30 +1,39 @@
 package entity;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
-public class IdLignecommande {
-    private int id_commande;
-    private int id_ligneCommande;
+@Embeddable
+public class IdLignecommande implements Serializable {
+    @ManyToOne
+    @JoinColumn(name = "id_commande")
+    private Commande commande;
+    @ManyToOne
+    @JoinColumn(name = "id_ligneCommande")
+    private Lignecommande ligneCommande;
 
     public IdLignecommande() {
     }
 
-    public IdLignecommande(int id_commande, int id_ligneCommande) {
-        this.id_commande = id_commande;
-        this.id_ligneCommande = id_ligneCommande;
+    public IdLignecommande(Commande commande, Lignecommande ligneCommande) {
+        this.commande = commande;
+        this.ligneCommande = ligneCommande;
     }
 
-    public int getId_commande() {
-        return id_commande;
+    public Commande getId_commande() {
+        return commande;
     }
 
-    public void setId_commande(int id_commande) {
-        this.id_commande = id_commande;
+    public void setId_commande(Commande id_commande) {
+        this.commande = id_commande;
     }
 
-    public int getId_ligneCommande() {
-        return id_ligneCommande;
+    public Lignecommande getId_ligneCommande() {
+        return ligneCommande;
     }
 
-    public void setId_ligneCommande(int id_ligneCommande) {
-        this.id_ligneCommande = id_ligneCommande;
+    public void setId_ligneCommande(Lignecommande id_ligneCommande) {
+        this.ligneCommande = id_ligneCommande;
     }
 }

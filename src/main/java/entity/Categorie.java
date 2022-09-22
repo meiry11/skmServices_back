@@ -1,14 +1,22 @@
 package entity;
 
-public class Categorie {
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+public class Categorie  implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_categorie;
+    @Column
     private String nom_categorie;
-    private Produit produit;
+    @OneToMany(mappedBy = "produit",fetch = FetchType.LAZY)
+    private List<Produit> produit;
 
     public Categorie() {
     }
 
-    public Categorie(int id_categorie, String nom_categorie, Produit produit) {
+    public Categorie(int id_categorie, String nom_categorie, List<Produit> produit) {
         this.id_categorie = id_categorie;
         this.nom_categorie = nom_categorie;
         this.produit = produit;
@@ -30,11 +38,11 @@ public class Categorie {
         this.nom_categorie = nom_categorie;
     }
 
-    public Produit getProduit() {
+    public List<Produit> getProduit() {
         return produit;
     }
 
-    public void setProduit(Produit produit) {
+    public void setProduit(List<Produit> produit) {
         this.produit = produit;
     }
 }

@@ -1,7 +1,15 @@
 package entity;
 
-public class Catalogueemballage {
+import javax.persistence.Entity;
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "catalogueemballage")
+public class Catalogueemballage implements Serializable {
+    @EmbeddedId
     private IdCatalogueemballage id_catalogueemballage;
+    @Column
     private int nombre_total;
 
     public Catalogueemballage() {

@@ -1,8 +1,15 @@
 package entity;
 
-public class Livraison {
+import javax.persistence.*;
+import java.io.Serializable;
+@Entity
+@Table(name = "livraison")
+public class Livraison implements Serializable {
+    @EmbeddedId
     private  IdLivraison id_livraison;
+    @Column
     private String nom_livraison;
+    @Column
     private String choix_livraison;
 
     public Livraison() {
