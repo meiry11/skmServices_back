@@ -1,5 +1,6 @@
 package com.skmServices.skmServices.config;
 
+import com.skmServices.skmServices.entity.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -7,21 +8,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.skmServices.skmServices.repository.IClientRepo;
 
+import java.sql.Date;
 
+@Configuration
 public class LoadDataBase {
     private static final Logger log = LoggerFactory.getLogger(LoadDataBase.class);
 
 
-//    @Bean
-//    CommandLineRunner initDatabase(IClientRepo clientRepo) {
-//        return args -> {
-////            log.info("loading data " + clientRepo.save(new Client(
-////                    "nom",  "prenom", "nom.prenom@test.fr", "0752060066",  Date.valueOf("1978-09-16"), 1,  "motDePasse"
-////            )));
-//            //log.info("***********************loading data ");
-//            System.out.println("test");
-//        };
-//    }
+    @Bean
+    CommandLineRunner initDatabase(IClientRepo clientRepo) {
+        return args -> {
+//            log.info("loading data " + clientRepo.save(new Client(
+//                    "nom",  "prenom", "nom.prenom@test.fr", "0752060066",  Date.valueOf("1978-09-16"), 1,  "motDePasse"
+//            )));
+//            log.info("***********************loading data ");
+            System.out.println("test");
+        };
+    }
 //
 //    CommandLineRunner initDatabase(IAdresseRepo adresseRepo) {
 //        return args -> {
