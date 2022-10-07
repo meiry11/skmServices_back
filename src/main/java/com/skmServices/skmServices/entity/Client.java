@@ -1,5 +1,7 @@
 package com.skmServices.skmServices.entity;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "client")
+@Table(name = "client",uniqueConstraints = { @UniqueConstraint( columnNames = "email") })
 public class Client implements Serializable {
 
     @Id
@@ -17,6 +19,7 @@ public class Client implements Serializable {
     private String nom;
     @Column
     private String prenom;
+    @NotNull
     @Column
     private String email;
     @Column

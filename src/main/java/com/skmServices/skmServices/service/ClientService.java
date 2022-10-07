@@ -27,6 +27,18 @@ public class ClientService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    public Client findByEmail(String email){
+        Optional<Client> optClient = clientRepo.findByEmail(email);
+        if(optClient.isPresent())
+            return optClient.get();
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    public Optional<Client> login(String email){
+        return clientRepo.findByEmail(email);
+    }
+
 
     public Client create(Client Client ){
         return clientRepo.save(Client );

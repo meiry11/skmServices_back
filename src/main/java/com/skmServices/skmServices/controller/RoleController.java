@@ -27,6 +27,11 @@ public class RoleController {
     public Role findById(@PathVariable Integer id){
         return roleService.findById(id);
     }
+    @GetMapping("/{nom}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public Role findByNom_role(@PathVariable String nom){
+        return roleService.findByNom_role(nom);
+    }
 
     @PostMapping()
     @ResponseStatus(code= HttpStatus.CREATED)

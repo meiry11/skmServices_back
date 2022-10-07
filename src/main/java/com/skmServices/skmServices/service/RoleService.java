@@ -28,6 +28,9 @@ public class RoleService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    public Role findByNom_role(String nom){
+        return roleRepo.findByNom_role(nom);
+    }
 
     public Role create(Role role ){
         return roleRepo.save(role );
