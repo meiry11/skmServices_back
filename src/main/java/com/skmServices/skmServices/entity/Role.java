@@ -9,18 +9,18 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_role;
     @Column
-    private String nom_role;
-    @ManyToOne
-    @JoinColumn(name = "id_nom")
-    private Client client;
+    private String nom;
+//    @ManyToOne
+//    @JoinColumn(name = "id_nom")
+//    private Client client;
 
     public Role() {
     }
 
-    public Role(int id_role, String nom_role, Client client) {
+    public Role(int id_role, String nom) {
         this.id_role = id_role;
-        this.nom_role = nom_role;
-        this.client = client;
+        this.nom = nom;
+        //this.client = client;
     }
 
     public int getId_role() {
@@ -31,19 +31,19 @@ public class Role implements Serializable {
         this.id_role = id_role;
     }
 
-    public String getNom_role() {
-        return nom_role;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNom_role(String nom_role) {
-        this.nom_role = nom_role;
+    public void setNom(String nom_role) {
+        this.nom = nom_role;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
+//    public Client getClient() {
+//        return client;
+//    }
+//
+//    public void setClient(Client client) {
+//        this.client = client;
+//    }
 }

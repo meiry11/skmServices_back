@@ -1,6 +1,8 @@
 package com.skmServices.skmServices.entity;
 
+
 import com.sun.istack.NotNull;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,8 +22,8 @@ public class Client implements Serializable {
     @Column
     private String prenom;
     @NotNull
-    @Column
-    private String email;
+    @Column(name = "email")
+    private String username;
     @Column
     private String telephone;
     @Column(name="date_creation")
@@ -29,39 +31,75 @@ public class Client implements Serializable {
     @Column(name="numero_siret")
     private Integer numeroSiret;
     @Column(name="mot_de_passe")
-    private String motDePasse;
+    private String password;
     @OneToMany(mappedBy = "client",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Adresse> adresse = new ArrayList<>();
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Commande> commande = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy="client",fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role>  role = new ArrayList<>();
+
+    private String roles;
+
+    private boolean isActive;
 
     public Client() {
     }
 
-    public Client(String nom, String prenom, String email, String telephone, Date dateCreation, Integer numeroSiret, String motDePasse) {
+    public Client(String nom, String prenom, String username, String telephone, Date dateCreation, Integer numeroSiret, String password) {
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
+        this.username = username;
         this.telephone = telephone;
         this.dateCreation = dateCreation;
         this.numeroSiret = numeroSiret;
-        this.motDePasse = motDePasse;
+        this.password = password;
     }
 
-    public Client(String nom, String prenom, String email, String telephone, Date dateCreation, Integer numeroSiret, String motDePasse, List<Adresse> adresse, List<Commande> commande, List<Role> role) {
+    public Client(String nom, String prenom, String username, String telephone, Date dateCreation, Integer numeroSiret, String password, List<Adresse> adresse, List<Commande> commande, List<Role> role) {
         this.nom = nom;
         this.prenom = prenom;
-        this.email = email;
+        this.username = username;
         this.telephone = telephone;
         this.dateCreation = dateCreation;
         this.numeroSiret = numeroSiret;
-        this.motDePasse = motDePasse;
+        this.password = password;
         this.adresse = adresse;
         this.commande = commande;
         this.role = role;
+    }
+
+    public Integer getId_nom() {
+        return id_nom;
+    }
+
+    public void setId_nom(Integer id_nom) {
+        this.id_nom = id_nom;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public List<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public Integer getId() {
@@ -88,12 +126,12 @@ public class Client implements Serializable {
         this.prenom = prenom;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String email) {
+        this.username = email;
     }
 
     public String getTelephone() {
@@ -120,12 +158,12 @@ public class Client implements Serializable {
         this.numeroSiret = numeroSiret;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setPassword(String motDePasse) {
+        this.password = motDePasse;
     }
 
     public List<Adresse> getAdresse() {
@@ -150,11 +188,11 @@ public class Client implements Serializable {
                 "id=" + id_nom +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + username + '\'' +
                 ", telephone=" + telephone +
                 ", dateCreation=" + dateCreation +
                 ", numeroSiret=" + numeroSiret +
-                ", motDePasse='" + motDePasse + '\'' +
+                ", motDePasse='" + password + '\'' +
                 ", adresse=" + adresse +
                 ", commande=" + commande +
                 '}';
